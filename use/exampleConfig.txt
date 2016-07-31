@@ -1,0 +1,9 @@
+cbase=/media/lucas/Storage/Music/archive
+
+scheme=%artist%/%album%/
+
+format=flac base=flac/
+format=mp3/320 base=portable/
+format=mp3/192 base=portable190/
+    
+//Based on this, all of my music can be found somewhere within /media/lucas/Storage/Music/archive. I keep my music in three formats: flac, mp3s at 320 kbps, and mp3s at 192 kbps. All of my flac music can be found in /media/lucas/Storage/Music/archive/flac, all of my 320 kbps mp3s can be found in /media/lucas/Storage/Music/archive/portable, and all of my 102 kbps mp3s can be found in /media/lucas/Storage/Music/archive/portable190. In each of those three directories, the music is organized according to the scheme. For example, in each of those three directories, the album "Revolver" by "the Beatles" can be found under "The Beatles/Revolver". For example, my flac copy of "Revolver" can be found at /media/lucas/Storage/Music/archive/flac/The\ Beatles/Revolver.

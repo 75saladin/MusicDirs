@@ -15,5 +15,12 @@ use/ contains stuff the user should edit, like config files. If you tell the
   now my idea is to use plain-text config files, supplied on the command-line,
   to allow the user to specify sets of options and swap between them simply by
   specifying a different config file.
-      
-    
+  
+  Final commit: ParseConfig takes one argument: the name of a config file in 
+  use/, with or without .txt extension, from which the music directories schema
+  will be generated. Currently the schema will simply be printed. Still needed:
+  a self-contained explanation. Probably a --use flag which will just contain 
+  this info. Next to tackle: delving into the music directories and comparing 
+  their contents. That won't be very useful (unless I have some albums that are
+  missing tracks), but it will once I get into reading the tags and and 
+  operating based on that.
