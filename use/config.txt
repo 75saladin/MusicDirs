@@ -1,0 +1,9 @@
+//The next line defines the common base between directories of each format. So if your wav files are in ~/foo/Music/wav and your mp3s are in ~/foo/Music/mp3, then their common base is ~/foo/Music/ and their format base locations are just wav/ and mp3/
+cbase=
+
+//The next line defines the scheme for organizing new files into directories, relative to that format's base directory
+scheme=
+
+//The next lines define a format and its base directory. For any given album and format, the location it will be sorted to is the following: [common base location]+[format base location]+[scheme]. Make a new line for each format.
+format= base=
+format= base=
