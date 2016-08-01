@@ -5,19 +5,41 @@ from pathlib import Path
 
 configsLocation = os.path.dirname(__file__)+"use/"
 configArgIndex = 1
+useFlags = ["--help", "--use", "-h", "-u"]
+usageText="Use "+useFlags.__str__()+" to invoke this usage text.\n\nGive the name of a config file located in use/, with or without the trailing '.txt', to apply to the program's operations."
     
-def parseCmd(cmdArg):
-    """Takes the cmdline config name, turns it into a file, and passes it on.
+def parseCmd():
+    """Parses and processes command-line arguments.
+    
+    Currently handles useFlags or config file specfication.
+    Returns logical representation of the music directory structure if one is given.
     """
-    if not cmdArg.endswith(".txt"):
-        cmdArg+=".txt"
-    f = open(configsLocation+cmdArg)
-    return parseConf(f)
 
-def parseConf(f):
-    """Parses the file into meaningful stuff.
+    flaged = False
+    for arg in sys.argv:
+        #ie, if it's the first arg
+        if arg.endswith(".py"):
+            continue
+        
+        #If arg matches one of useFlags, print usage and return
+        for f in useFlags:
+            if f==arg: 
+                print(usageText)
+                return None
+            
+        #If we get here, it's a config file
+        if not arg.endswith(".txt"):
+            cmdArg = arg+".txt"
+        f = open(configsLocation+cmdArg)
+        theThingToReturn = parseConfig(f)
     
-    Example of returned dictionary: {'scheme': 'artist/album/', 'cbase': 
+    #If we get here, args are done with no early returns. Return the thing.
+    return theThingToReturn
+
+def parseConfig(f):
+    """Parses the file into meaningful dictionary.
+    
+    Example of returned dictionary: {'scheme': '%artist%/%album%/', 'cbase': 
     '/media/Storage/Music/archive', 'formats': {'mp3/320': 'portable/', 'flac':
     'flac/', 'mp3/192': 'portable190/'}}
     """
@@ -28,12 +50,18 @@ def parseConf(f):
         if line.startswith("//"): 
             continue
         sline = re.split("[=\s]", line)
-        if sline[0]!="":
-            if sline[0]=="format":
-                config["formats"][sline[1]]=sline[3]                
+        if sline[0] is not "":
+            if sline[0] is "format":
+                #Puts the format as a key in the dict pointed to by "formats"
+                config["formats"][sline[1]] = sline[3]                
             else:
                 config[sline[0]] = sline[1]
     return config
 
-config = parseCmd(sys.argv[configArgIndex])
-print(config)
+###############################################################################
+
+config = parseCmd()
+if config is not None:
+    print(config)
+else:
+    print("Not moving on")
