@@ -2,6 +2,7 @@ import sys
 import re
 import os
 from pathlib import Path
+from src import Library
 
 configsLocation = os.path.dirname(__file__)+"use/"
 configArgIndex = 1
