@@ -1,9 +1,14 @@
+import MusicFiles
+
 class Album:
     """A class representing a particular album within an Artist"""
     
     def __init__(self, name):
         self.name = name
         self.tracks = []
+        
+    def getName():
+        return self.name
         
     def addTrack(name):
         """Puts a new Track into the album from a string name.
@@ -21,7 +26,7 @@ class Album:
         If that track isn't here, returns false.
         """        
         for t in self.tracks:
-            if t.name = name:
+            if t.getName() = name:
                 return t
         return False
     
@@ -33,9 +38,9 @@ class Album:
         Returns 0 if everything went well. If the track already existed in that
         format, returns 1.
         """
-        track = self.getTrack(file.track)
+        track = self.getTrack(file.getTrack())
         if not track: #ie, if it returned false b/c track not here yet
-            track = self.addTrack(file.track)
+            track = self.addTrack(file.getTrack())
             
         #When we get here track is most definitely the Track
         return track.addFile(file)

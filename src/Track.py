@@ -1,3 +1,5 @@
+import MusicFiles
+
 class Track:
     """A class representing a particular Track within an Album.
     
@@ -7,15 +9,10 @@ class Track:
     
     def __init__(self, name):
         self.name = name
-        self.formats = []
+        self.files = []
         
-    def addFormat(format):
-        """Adds a format to this track.
-        
-        To be called by this class after checking if the track already has the
-        format.
-        """
-        self.formats.append(format)
+    def getName():
+        return self.name
     
     def hasFormat(format):
         """Returns whether or not this track exists under the format"""
@@ -30,8 +27,9 @@ class Track:
         Returns 0 if everything went well. If the track already existed in that
         format, returns 1.
         """
-        
-        if self.formats has file.format:
-            return 1
-        self.addFormat(file.format)
+        for f in self.files:
+            if file.getFormat()==f.getFormat():
+                return 1
+        #If we get here, the new file does not match any formats we already have
+        self.files.append(file)
         return 0

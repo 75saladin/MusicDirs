@@ -1,3 +1,5 @@
+import MusicFiles
+
 class Library:
     """The object that represents an entire music library of one or more formats"""
     def __init__(self, loc):
@@ -23,7 +25,7 @@ class Library:
         If that artist isn't here, returns false.
         """        
         for a in self.artists:
-            if a.name = name:
+            if a.getName() = name:
                 return a
         return False
     
@@ -35,9 +37,9 @@ class Library:
         Returns 0 if everything went well. If the track already existed in that
         format, returns 1.
         """
-        artist = self.getArtist(file.artist)
+        artist = self.getArtist(file.getArtist())
         if not artist: #ie, if it returned false b/c artist not here yet
-            artist = self.addArtist(file.artist)
+            artist = self.addArtist(file.getArtist())
             
         #When we get here artist is most definitely the Artist
         return artist.addFile(file)
