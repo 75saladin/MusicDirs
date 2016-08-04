@@ -22,9 +22,6 @@ class MusicFile:
     
     def getTitle():
         return self.title
-    
-    def getFormat():
-        return self.title
 
 ###############################################################################        
 
