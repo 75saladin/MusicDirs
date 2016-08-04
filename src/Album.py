@@ -7,10 +7,10 @@ class Album:
         self.name = name
         self.tracks = []
         
-    def getName():
+    def getName(self):
         return self.name
         
-    def addTrack(name):
+    def addTrack(self, name):
         """Puts a new Track into the album from a string name.
         
         To be called by the class after checking that the track isn't already 
@@ -20,7 +20,7 @@ class Album:
         self.tracks.append(new)
         return new
     
-    def getTrack(name):
+    def getTrack(self, name):
         """Given the name of a track as a string, returns the Track.
         
         If that track isn't here, returns false.
@@ -30,7 +30,7 @@ class Album:
                 return t
         return False
     
-    def addFile(file):
+    def addFile(self, file):
         """Adds a MusicFile to this album.
         
         If necessary, adds the Track to the Album. then passes the file on 

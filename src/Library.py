@@ -6,10 +6,10 @@ class Library:
         self.loc = loc
         self.artists = []
         
-    def printRoot():
+    def printRoot(self):
         print(loc)
         
-    def addArtist(name):
+    def addArtist(self, name):
         """Puts a new Artist into the library from a string name.
         
         To be called by the class after checking that the artist isn't already 
@@ -19,7 +19,7 @@ class Library:
         self.artists.append(new)
         return new
         
-    def getArtist(name):
+    def getArtist(self, name):
         """Given the name of an artist as a string, returns the Artist.
         
         If that artist isn't here, returns false.
@@ -29,7 +29,7 @@ class Library:
                 return a
         return False
     
-    def addFile(file):
+    def addFile(self, file):
         """Adds a MusicFile to this library.
         
         If necessary, adds the artist to the library. then passes the file on 

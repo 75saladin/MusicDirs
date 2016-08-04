@@ -11,17 +11,17 @@ class Track:
         self.name = name
         self.files = []
         
-    def getName():
+    def getName(self):
         return self.name
     
-    def hasFormat(format):
+    def hasFormat(self, format):
         """Returns whether or not this track exists under the format"""
         for f in self.formats:
             if f==format:
                 return True
         return False
     
-    def addFile(file):
+    def addFile(self, file):
         """Adds a MusicFile to this Track.
         
         Returns 0 if everything went well. If the track already existed in that

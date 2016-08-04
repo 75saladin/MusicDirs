@@ -7,10 +7,10 @@ class Artist:
         self.name = name
         self.albums = []
     
-    def getName():
+    def getName(self):
         return self.name
         
-    def addAlbum(name):
+    def addAlbum(self, name):
         """Puts a new Album into the artist from a string name.
         
         To be called by the class after checking that the album isn't already 
@@ -20,7 +20,7 @@ class Artist:
         self.albums.append(new)
         return new
         
-    def getAlbum(name):
+    def getAlbum(self, name):
         """Given the name of an album as a string, returns the Album.
         
         If that album isn't here, returns false.
@@ -30,7 +30,7 @@ class Artist:
                 return a
         return False
     
-    def addFile(file):
+    def addFile(self, file):
         """Adds a MusicFile to this artist.
         
         If necessary, adds the Album to the Artist. then passes the file on 

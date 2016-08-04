@@ -1,7 +1,7 @@
 from mutagen.easyid3 import EasyID3
 from mutagen import File
 
-class MusicFile:
+class MusicFile(object):
     """A class representing a particular music file.
     
     Children that are intended to be instantiated must initialize fields for
@@ -11,17 +11,20 @@ class MusicFile:
     def __init__(self, location):
         self.location = location
         
-    def getLocation():
+    def getLocation(self):
         return self.location
     
-    def getArtist():
+    def getArtist(self):
         return self.artist
     
-    def getAlbum():
+    def getAlbum(self):
         return self.album
     
-    def getTitle():
+    def getTitle(self):
         return self.title
+    
+    def getFormat(self):
+        return self.format
 
 ###############################################################################        
 
@@ -29,11 +32,13 @@ class LosslessMusicFile(MusicFile):
     """A class representing a lossless music file.
     
     Contains all functionality required only by only lossless music files. To
-    date, that is only returning format more plainly than do lossy files.
+    date, that is only returning full format more plainly than do lossy files.
     """
     def __init__(self, location):
         super().__init__(location)
         
+    def getFullFormat(self):
+        return self.getFormat()        
     
 
 ###############################################################################
@@ -48,11 +53,11 @@ class LossyMusicFile(MusicFile):
     def __init__(self, location):
         super().__init__(location)
         
-    def parseBitrate(br):
+    def parseBitrate(self, br):
         """Takes a given precise bitrate value and rounds it to the closest
         standard bitrate.
         
-        Standard bitrate varies by specific filetype and it to be set by the 
+        Standard bitrate varies by specific filetype and is to be set by the 
         child.
         """
         prevDiff=999999999
@@ -67,14 +72,18 @@ class LossyMusicFile(MusicFile):
             prevDiff = diff
             prev = std
     
-    def getFormat():
-        """Return the format as a string.
+    def getFullFormat(self):
+        """Return the format with bitrate as a string.
         
         look like the format name (a class variable in the children), followed 
         by a slash, followed by the bitrate in kbps (an instance variable in the 
-        children. a 320kbps mp3 would be 'mp3/320'.
+        children). a 320kbps mp3 would be 'mp3/320'.
         """
-        return self.format + '/' + self.bitrate
+        return self.format + '/' + str(self.bitrate)
+    
+    def getBitrate(self):
+        """Return just the bitrate, in kbps."""
+        return self.bitrate
         
 
 ###############################################################################
@@ -98,7 +107,7 @@ class Mp3File(LossyMusicFile):
     
     format = "mp3"
     
-    # Throw a large value on the end so parseBitrate() can iterate after the end
+    # Threw a large value on the end so parseBitrate() can iterate after the end
     bitrates = (32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 
                 128000, 160000, 192000, 224000, 256000, 320000, 999999)
         
@@ -110,4 +119,4 @@ class Mp3File(LossyMusicFile):
         self.album = id3Info['album'][0]
         self.title = id3Info['title'][0]
         # Once we set it here, bitrate shall be known in kbps
-        self.bitrate = (parseBitrate(File(location).info.bitrate))/1000
+        self.bitrate = int((self.parseBitrate(File(location).info.bitrate))/1000)
