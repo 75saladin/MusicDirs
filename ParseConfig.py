@@ -7,7 +7,7 @@ from src import Library
 configsLocation = os.path.dirname(__file__)+"use/"
 configArgIndex = 1
 useFlags = ["--help", "--use", "-h", "-u"]
-usageText="Use "+useFlags.__str__()+" to invoke this usage text.\n\nGive the name of a config file located in use/, with or without the trailing '.txt' and leading 'use/', to apply to the program's operations."
+usageText= "Use "+useFlags.__str__()+" to invoke this usage text.\n\nGive the name of a config file located in use/, with or without the trailing '.txt' and leading 'use/', to apply to the program's operations."
     
 def parseCmd():
     """Parses and processes command-line arguments.

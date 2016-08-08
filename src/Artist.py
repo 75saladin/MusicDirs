@@ -7,42 +7,38 @@ class Artist:
         self.name = name
         self.albums = []
     
-    def getName(self):
-        return self.name
-        
-    def addAlbum(self, name):
+    def add_album(self, name):
         """Puts a new Album into the artist from a string name.
         
-        To be called by the class after checking that the album isn't already 
-        in here. Returns the new Album object.
+        To be called by the class after checking that the album isn't
+        already in here. Returns the new Album object.
         """
         new = Album(name)
         self.albums.append(new)
         return new
         
-    def getAlbum(self, name):
+    def album_from_str(self, name):
         """Given the name of an album as a string, returns the Album.
         
         If that album isn't here, returns false.
         """        
         for a in self.albums:
-            if a.getName() = name:
+            if a.name = name:
                 return a
         return False
     
-    def addFile(self, file):
+    def add_file(self, file):
         """Adds a MusicFile to this artist.
         
-        If necessary, adds the Album to the Artist. then passes the file on 
-        to the album in question.
-        Returns 0 if everything went well. If the track already existed in that
-        format, returns 1.
+        If necessary, adds the Album to the Artist. then passes the file
+        on to the album in question.
+        Returns 0 if everything went well. If the track already existed 
+        in that format, returns 1.
         """
-        album = self.getAlbum(file.getAlbum())
+        album = self.album_from_str(file.album)
         if not album: #ie, if it returned false b/c album not here yet
-            album = self.addAlbum(file.getAlbum())
-            
+            album = self.add_album(file.album)
         #When we get here album is most definitely the Album
-        return album.addFile(file)
+        return album.add_file(file)
     
         
